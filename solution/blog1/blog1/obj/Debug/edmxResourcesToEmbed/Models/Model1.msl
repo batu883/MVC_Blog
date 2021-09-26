@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Blog2ModelStoreContainer" CdmEntityContainer="Blog2Entities3">
+    <EntitySetMapping Name="Bio">
+      <EntityTypeMapping TypeName="Blog2Model.Bio">
+        <MappingFragment StoreEntitySet="Bio">
+          <ScalarProperty Name="BioID" ColumnName="BioID" />
+          <ScalarProperty Name="Başlık" ColumnName="Başlık" />
+          <ScalarProperty Name="Resim" ColumnName="Resim" />
+          <ScalarProperty Name="Bio1" ColumnName="Bio" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="İnstagram" ColumnName="İnstagram" />
+          <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="Blog2Model.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="KategoriAdı" ColumnName="KategoriAdı" />
+          <ScalarProperty Name="KategoriSembol" ColumnName="KategoriSembol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postlar">
+      <EntityTypeMapping TypeName="Blog2Model.postlar">
+        <MappingFragment StoreEntitySet="postlar">
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="YazarID" ColumnName="YazarID" />
+          <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Görüntülenme" ColumnName="Görüntülenme" />
+          <ScalarProperty Name="Başlık" ColumnName="Başlık" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="İçerikÖzet" ColumnName="İçerikÖzet" />
+          <ScalarProperty Name="İçerik" ColumnName="İçerik" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Blog2Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yorum">
+      <EntityTypeMapping TypeName="Blog2Model.Yorum">
+        <MappingFragment StoreEntitySet="Yorum">
+          <ScalarProperty Name="YorumID" ColumnName="YorumID" />
+          <ScalarProperty Name="YorumcuAd" ColumnName="YorumcuAd" />
+          <ScalarProperty Name="YorumcuMail" ColumnName="YorumcuMail" />
+          <ScalarProperty Name="Yorumİçerik" ColumnName="Yorumİçerik" />
+          <ScalarProperty Name="PostYorumdakiID" ColumnName="PostYorumdakiID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Blog2Model.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Blog2Model.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Blog2Model.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Blog2Model.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Blog2Model.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Blog2Model.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Blog2Model.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

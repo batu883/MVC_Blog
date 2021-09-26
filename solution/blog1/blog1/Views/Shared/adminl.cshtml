@@ -1,0 +1,75 @@
+﻿@using blog1.Models;
+@{
+    Blog2Entities3 db = new Blog2Entities3();
+    var kategori2 = db.Kategori.ToList();
+    //var bioo = db.Bio.FirstOrDefault();
+
+
+    var bio = db.Bio.Where(x => x.BioID == 3).FirstOrDefault();
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link id="theme-style" rel="stylesheet" href="~/Content/main.css">
+    <title>BLOG</title>
+</head>
+<body class="table table-responsive" style="background-color:#EDFFED;">
+
+
+    <div>
+        @*üst kategori menüsüüü*@
+
+        <table style="margin-left:282px; width:81%;    background-color: #580;  text-decoration: none; margin-right:10px;" class="table-bordered">
+
+            <tr>
+                <td>
+                    <a style="color:white;" href="/Admin/Admin">    Post Sil       </a>
+                </td>
+
+                <td>
+                    <a style="color:white;" href="/Admin/PostEkle">    Post Ekle       </a>
+
+
+                </td>
+
+                <td>
+                    <a style="color:white;" href="/Admin/KategoriEkle">    Kategori Ekle       </a>
+
+                </td>
+
+
+                <td>
+                    <a style="color:white;" href="/Admin/KategoriSil">    Kategori Sil       </a>
+
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+
+    <div>
+
+        <header class="header text-center">
+            <h1 class="blog-name pt-lg-4 mb-0"><a href="#">Admin Paneli</a></h1>    
+
+           
+        </header>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@using blog1.Models;
+@*@model List<postlar>
+@model List<Kategori>*@
+@model Tuple<List<postlar>,List<Kategori>>
+
+
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+    <title>BLOG</title>
+
+
+
+</head>
+<body class="table-responsive">
+  
+
+
+
+    <div style="margin-top:20px;">
+
+
+
+        @foreach (var post in Model.Item1)
+        {
+            <div class="container" style="padding-left:120px;padding-top:25px;padding-bottom:0.5px;background-color:#CFF3CF">
+                <div class="item mb-5">
+                    <div class="media">
+
+                        <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="~/Content/images/blog/@post.Foto" alt="image" width="235" height="135">
+                        <div class="media-body">
+                            <h3 class="title mb-1"><a href="/Post/Post/@post.PostID">@post.Başlık</a></h3>
+                            <div class="meta mb-1">
+                                <span class="">@post.Tarih</span>
+                                <span class="comment"><a href="#">@post.Görüntülenme Görüntülenme</a></span>
+                            </div>
+                            <div class="intro">@post.İçerikÖzet </div>
+                            <a class="more-link" href="/Post/Post/@post.PostID">Devamı için tıklayınız &rarr;</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+        }
+
+        </div>
+
+
+
+
+</body>
+</html>

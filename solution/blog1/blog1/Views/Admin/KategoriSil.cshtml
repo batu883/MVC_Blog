@@ -1,0 +1,47 @@
+﻿@using blog1.Models;
+@model List<Kategori>
+@{
+    Layout = "~/Views/Shared/adminl.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+    <h1>AdminPage</h1>
+    <div>
+
+
+        <table class="table table-bordered table-responsive table-hover" style="padding-left:300px;padding-top:25px">
+            <tr>
+                <th>Kategori İsim</th>
+                <th>Kategori ID</th>
+            </tr>
+            <tr>
+                @foreach (var s in Model)
+                {
+                <tr>
+                    <td>@s.KategoriAdı</td>
+                    <td>@s.KategoriID</td>
+
+                    <td>
+                        <a href="/Admin/KSil/@s.KategoriID"> <button class="btn btn-danger"> Sil   </button></a>
+                    </td>
+                </tr>
+            }
+
+
+
+
+
+            </table>
+
+
+
+
+        </div>
+    </body>
+</html>

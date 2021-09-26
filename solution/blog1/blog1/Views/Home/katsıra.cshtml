@@ -1,0 +1,35 @@
+﻿@using blog1.Models;
+@model List<postlar>
+
+@{
+    ViewBag.Title = "katsıra";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>katsıra</h2>
+<div style="margin-top:10px;">
+
+    @foreach (var ktsy in Model)
+    {
+        <div class="container" style="padding-left:120px;padding-top:25px;padding-bottom:0.5px;background-color:#CFF3CF">
+            <div class="item mb-5">
+                <div class="media">
+
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="~/Content/images/blog/@ktsy.Foto" alt="image" width="235" height="135">
+                    <div class="media-body">
+                        <h3 class="title mb-1"><a href="blog-post.html">@ktsy.Başlık</a></h3>
+                        <div class="meta mb-1"><span class="">@ktsy.Tarih</span><span class="comment"><a href="#">8 comments</a></span></div>
+                        <div class="intro">@ktsy.İçerikÖzet </div>
+                        <a class="more-link" href="/Post/Post/@ktsy.PostID">Devamı için tıklayınız &rarr;</a>
+
+                    </div><!--//media-body-->
+                </div><!--//media-->
+            </div><!--//item-->
+        </div>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+
+    }
+
+</div>
+

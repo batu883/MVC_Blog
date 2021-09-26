@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Blog2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Bio">
+    <Key>
+      <PropertyRef Name="BioID" />
+    </Key>
+    <Property Name="BioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Başlık" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Resim" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Bio1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="İnstagram" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Linkedin" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAdı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="KategoriSembol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="postlar" Relationship="Self.FK_postlar_Kategori" FromRole="Kategori" ToRole="postlar" />
+  </EntityType>
+  <EntityType Name="postlar">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YazarID" Type="Int32" Nullable="false" />
+    <Property Name="KategoriID" Type="Int32" Nullable="false" />
+    <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Görüntülenme" Type="Int32" Nullable="false" />
+    <Property Name="Başlık" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="İçerikÖzet" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="İçerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_postlar_Kategori" FromRole="postlar" ToRole="Kategori" />
+    <NavigationProperty Name="Yorum" Relationship="Self.FK_Yorum_postlar" FromRole="postlar" ToRole="Yorum" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Yorum">
+    <Key>
+      <PropertyRef Name="YorumID" />
+    </Key>
+    <Property Name="YorumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YorumcuAd" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="YorumcuMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Yorumİçerik" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PostYorumdakiID" Type="Int32" />
+    <NavigationProperty Name="postlar" Relationship="Self.FK_Yorum_postlar" FromRole="Yorum" ToRole="postlar" />
+  </EntityType>
+  <Association Name="FK_postlar_Kategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+    <End Role="postlar" Type="Self.postlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="postlar">
+        <PropertyRef Name="KategoriID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yorum_postlar">
+    <End Role="postlar" Type="Self.postlar" Multiplicity="0..1" />
+    <End Role="Yorum" Type="Self.Yorum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="postlar">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="Yorum">
+        <PropertyRef Name="PostYorumdakiID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Blog2Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bio" EntityType="Self.Bio" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="postlar" EntityType="Self.postlar" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Yorum" EntityType="Self.Yorum" />
+    <AssociationSet Name="FK_postlar_Kategori" Association="Self.FK_postlar_Kategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="postlar" EntitySet="postlar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yorum_postlar" Association="Self.FK_Yorum_postlar">
+      <End Role="postlar" EntitySet="postlar" />
+      <End Role="Yorum" EntitySet="Yorum" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+</Schema>

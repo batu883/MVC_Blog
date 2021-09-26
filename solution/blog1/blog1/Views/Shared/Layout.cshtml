@@ -1,0 +1,100 @@
+﻿@using blog1.Models;
+@{
+    Blog2Entities3 db = new Blog2Entities3();
+    var kategori2 = db.Kategori.ToList();
+    //var bioo = db.Bio.FirstOrDefault();
+
+
+    var bio = db.Bio.Where(x => x.BioID == 3).FirstOrDefault();
+}
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+
+    <link id="theme-style" rel="stylesheet" href="~/Content/main.css">
+</head>
+<body class="table table-responsive" style="background-color:#EDFFED;">
+
+
+    <div>
+        @*üst kategori menüsüüü*@
+
+        <table style="margin-left:282px; width:81%;    background-color: #580;  text-decoration: none; margin-right:10px;" class="table-bordered">
+
+            <tr>
+                @foreach (var kat in kategori2)
+                {
+                    <td>
+                        <img style="color:white;"src="~/Content/İCONS/@kat.KategoriSembol " alt="image">
+                        <a style="color:white;"href="/Home/katsıra/@kat.KategoriID">    @kat.KategoriAdı       </a>
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+
+
+    <div>
+
+        <header class="header text-center">
+            <h1 class="blog-name pt-lg-4 mb-0"><a href="/Home/Anasayfa/">@bio.Başlık</a></h1>    
+
+            <nav class="navbar navbar-expand-lg navbar-dark float-left">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navigation" class="collapse navbar-collapse flex-column">
+                    <div class="profile-section pt-3 pt-lg-0">
+                        <img class="profile-image mb-3 rounded-circle mx-auto" src="~/Content/images/@bio.Resim" alt="image">
+
+                        <div class="bio mb-3">@bio.Bio1<br></div>
+                        <ul class="social-list list-inline py-3 mx-auto">
+                            <li class="list-inline-item"><a href="@bio.Twitter"><i class="fab fa-twitter fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a href="@bio.Facebook"><i class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="@bio.İnstagram"><i class="fab fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="@bio.Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <ul class="navbar-nav flex-column text-left">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Anasayfa"><i class="fas fa-home fa-fw mr-2"></i>Ana Sayfa <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+
+                    <div class="my-2 my-md-3">
+
+                        <a class="btn btn-primary" href="/Admin/Admin" target="_blank">Admin Paneli</a>
+
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

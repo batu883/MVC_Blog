@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/adminl.cshtml";
+}
+
+<h2>PostEkle</h2>
+
+
+
+<div class="container" style="padding-left:300px;padding-top:25px">
+    <h1>Kategori Ekle</h1>
+
+    <form action="/Admin/KategoriEkle" method="post" class="form-group">
+
+        <br />
+        <label style="margin-bottom:5px; margin-top:10px;">Kategori Adı girin: </label>
+        <br />
+        <input type="text" name="KategoriAdı" />
+        <br />
+        <label style="margin-bottom:5px; margin-top:10px;">Sembol kodunu girin:  </label>
+        <br />
+        <input type="text" name="KategoriSembol" />
+      
+        <input type="submit" style="margin:5px;" class="btn btn-outline-primary  " value="Gönder" />
+
+    </form>
+</div>
+
+
+
+

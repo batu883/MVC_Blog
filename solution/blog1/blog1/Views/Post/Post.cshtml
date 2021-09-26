@@ -1,0 +1,114 @@
+﻿@using blog1.Models;
+@model postlar
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    Blog2Entities3 db = new Blog2Entities3();
+
+    var bio = db.Bio.Where(x => x.BioID == 3).FirstOrDefault();
+    var _yorum = db.Yorum.Where(x => x.PostYorumdakiID ==Model.PostID).FirstOrDefault();
+
+
+
+}
+
+
+
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+    <div class="container" style="padding-left:100px;padding-top:25px">
+        <div class="item mb-5">
+            <div class="media">
+                <div class="media-body">
+                    <h3 class="title mb-2"><a href="#">@Model.Başlık</a></h3>
+                    <div class="meta mb-1"><span class="">@Model.Tarih</span><span class="comment"><a href="#">@Model.Görüntülenme Görüntülenme</a></span></div>
+
+                    <div><p> @Model.İçerik </p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container" style="padding-left:100px;padding-top:25px;">
+        <h5 class="font-weight-bolder">Yorumlar</h5>
+    </div>
+
+    @foreach (var xx in Model.Yorum)
+
+    {
+
+        if (xx.YorumID != null)
+        {
+
+            <div class="container" style="padding-left:150px;padding-top:10px">
+                <div class="item mb-sm-0">
+                    <div class="blog-list">
+                        <div class="">
+                            <h3 style="font-size:15px;"><a style="color:black" href="#">@xx.YorumcuAd</a></h3>
+                            <div class="meta mb-1"><span class="">@xx.YorumcuMail</span></div>
+
+                            <div><p> @xx.Yorumİçerik </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="container" style="padding-left:120px;padding-top:25px;padding-bottom:0.5px;background-color:#CFF3CF">
+                <h3>Yorum yok</h3>
+            </div>
+        }
+
+
+        
+
+
+
+    }
+
+
+
+
+
+    <hr />
+
+    <div class="container" style="padding-left:100px;padding-top:25px">
+        <h1>yorum ekle</h1>
+
+        <form action="/Post/Yorum" method="post" class="form-group">
+
+            <label style="margin-bottom:5px; margin-top:10px;">Adınız: </label>
+            <br />
+            <input type="text" name="YorumcuAd" />
+            <br />
+            <label style="margin-bottom:5px; margin-top:10px;">Mailiniz: </label>
+            <br />
+            <input type="text" name="YorumcuMail" />
+            <br />
+            <input type="hidden" value="@Model.PostID" name="PostYorumdakiID" />
+            <div style="margin-bottom:5px; margin-top:15px;">
+                <textarea class="form-control col-md-5" rows="4" name="Yorumİçerik">    </textarea>
+            </div>
+            @*   <input type="button" style="margin:5px;" class="btn btn-outline-primary submit " name="YorumID" value="YorumGönder" />*@
+            @*  <button style="margin:5px;" class="btn btn-outline-primary submit " name="YorumID">    Gönderr            </button>*@
+            <input type="submit" style="margin:5px;" class="btn btn-outline-primary  " value="Gönder" />
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
